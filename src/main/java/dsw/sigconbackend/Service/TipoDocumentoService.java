@@ -1,4 +1,4 @@
-package dsw.sigconbackend.Service;
+package dsw.sigconbackend.service;
 
 import dsw.sigconbackend.model.TipoDocumento;
 import dsw.sigconbackend.repository.TipoDocumentoRepository;
