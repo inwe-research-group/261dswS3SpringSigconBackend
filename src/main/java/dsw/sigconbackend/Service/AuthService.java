@@ -71,13 +71,9 @@ public class AuthService {
         if (!passwordEncoder.matches(request.getPassword(), usuario.getPasswordHash()))
             throw new BadCredentialsException("Contrasenia incorrecta");
 
-        List<String> modules = Collections.emptyList();
-        if (usuario.getRol() != null) {
-            modules = moduloRepository.findByRolId(usuario.getRol().getIdRol())
-                .stream()
-                .map(Modulo::getDescripcion)
-                .collect(Collectors.toList());
-        }
+        List<Modulo> modules = Collections.emptyList();
+        if (usuario.getRol() != null)
+            modules = moduloRepository.findByRolId(usuario.getRol().getIdRol());
         
         var token = jwtService.generateToken(usuario, modules);
         return AuthResponseDTO.builder()
